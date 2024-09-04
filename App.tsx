@@ -1,29 +1,68 @@
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import {
   StatusBar,
   StyleSheet,
-  Text,
-  View,
 } from 'react-native';
+import ManageExpense from './src/screens/ManageExpense';
+import RecentExpense from './src/screens/RecentExpense';
+import AllExpense from './src/screens/AllExpense';
+import { colors } from './src/assets/Colors';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
-function App(): React.JSX.Element {
+const Stack = createStackNavigator();
+const BottomTabs = createBottomTabNavigator();
+
+const ExpenseOverviw = () => {
   return (
-    <View style={styles.container}>
-      <Text style={{color:'#000'}}>
-        Hello 
-      </Text>
-      <StatusBar barStyle={'default'} />
-    </View>
+    <BottomTabs.Navigator screenOptions={{
+      headerStyle: {backgroundColor: colors.primary500},
+      headerTintColor: '#ffffff',
+      tabBarStyle: {backgroundColor: colors.primary500},
+      tabBarActiveTintColor: colors.accent500
+    }}>
+      <BottomTabs.Screen
+       name='RecentExpense' 
+       component={RecentExpense}
+       options={{
+         title: "Recent Expense",
+         tabBarLabel: "Recent Expense",
+        //  tabBarIcon: ({color, size}) => <Icon />
+       }} 
+       />
+      <BottomTabs.Screen 
+      name='AllExpense' 
+      component={AllExpense} 
+      options={{
+        title: "All Expenses"
+      }} 
+      />
+    </BottomTabs.Navigator>
+  )
+}
+
+const App = (): React.JSX.Element => {
+  return (
+    <>
+      {/* <StatusBar barStyle={'default'} /> */}
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name='ExpenseOverview' 
+            component={ExpenseOverviw} 
+            options={{ headerShown: false }} 
+            />
+          <Stack.Screen 
+          name='ManageExpense' 
+          component={ManageExpense} 
+          />
+        </Stack.Navigator>
+
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-container:{
-  flex: 1,
-  backgroundColor:'#fff',
-  alignItems:'center',
-  justifyContent:'center'
-}
-});
 
 export default App;
