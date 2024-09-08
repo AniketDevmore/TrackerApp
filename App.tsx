@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import {
+  Image,
   StatusBar,
   StyleSheet,
 } from 'react-native';
@@ -10,7 +11,7 @@ import ManageExpense from './src/screens/ManageExpense';
 import RecentExpense from './src/screens/RecentExpense';
 import AllExpense from './src/screens/AllExpense';
 import { colors } from './src/assets/Colors';
-// import Icon from 'react-native-vector-icons/FontAwesome';
+// import calendar from '';
 
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -36,10 +37,12 @@ const ExpenseOverviw = () => {
       name='AllExpense' 
       component={AllExpense} 
       options={{
-        title: "All Expenses"
+        title: "All Expenses",
+        tabBarLabel :"All Expense",
+        // tabBarIcon: ({color, size}) => <Image source={require('./src/assets/images/calendar.png')} style={{height:25, width:25}}/>
       }} 
       />
-    </BottomTabs.Navigator>
+    </BottomTabs.Navigator>//BEA044A3
   )
 }
 
