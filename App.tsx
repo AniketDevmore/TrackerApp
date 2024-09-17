@@ -46,17 +46,11 @@ const ExpenseOverviw = () => {
       tabBarIcon: ({ focused, color, size }) =>
         renderTabIcon(route, focused, color, size),
       tabBarActiveTintColor: colors.accent500,
-      tabBarInactiveTintColor: "#a6a6a6",
+      tabBarInactiveTintColor: colors.accent100,
       tabBarStyle: {backgroundColor: colors.primary500},
-      headerTintColor: '#ffffff',
+      headerTintColor: colors.whiteColor,
       headerStyle: {backgroundColor: colors.primary500},
     })}
-    //  screenOptions={{
-    //   headerStyle: {backgroundColor: colors.primary500},
-    //   headerTintColor: '#ffffff',
-    //   tabBarStyle: {backgroundColor: colors.primary500},
-    //   tabBarActiveTintColor: colors.accent500
-    // }}
     >
       <BottomTabs.Screen
        name='RecentExpense' 
@@ -64,7 +58,6 @@ const ExpenseOverviw = () => {
        options={{
          title: "Recent Expense",
          tabBarLabel: "Recent Expense",
-        //  tabBarIcon: ({color, size}) => <Icon />
        }} 
        />
       <BottomTabs.Screen 
@@ -73,17 +66,15 @@ const ExpenseOverviw = () => {
       options={{
         title: "All Expenses",
         tabBarLabel :"All Expense",
-        // tabBarIcon: ({color, size}) => <Image source={require('./src/assets/images/calendar.png')} style={{height:25, width:25}}/>
       }} 
       />
-    </BottomTabs.Navigator>//BEA044A3
+    </BottomTabs.Navigator>
   )
 }
 
 const App = (): React.JSX.Element => {
   return (
     <>
-      {/* <StatusBar barStyle={'default'} /> */}
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen

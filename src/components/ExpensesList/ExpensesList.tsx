@@ -8,7 +8,7 @@ const ExpensesList = (data:any) => {
         keyExtractor={(item:any, key:any) => key}
         renderItem={({item}:any)=>(
             <View>
-                <Text>{item.description}</Text>
+                <Text style={{color:'#000'}}>{item.description}</Text>
             </View>
         )}
         />
