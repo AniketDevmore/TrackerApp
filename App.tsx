@@ -7,6 +7,7 @@ import RecentExpense from './src/screens/RecentExpense';
 import AllExpense from './src/screens/AllExpense';
 import { colors } from './src/assets/Colors';
 import Icon, { IconType } from "react-native-dynamic-vector-icons";
+import IconButton from './src/components/UI/IconButton';
 
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -42,31 +43,36 @@ const ExpenseOverviw = () => {
   };
   return (
     <BottomTabs.Navigator
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) =>
-        renderTabIcon(route, focused, color, size),
-      tabBarActiveTintColor: colors.accent500,
-      tabBarInactiveTintColor: colors.accent100,
-      tabBarStyle: {backgroundColor: colors.primary500},
-      headerTintColor: colors.whiteColor,
-      headerStyle: {backgroundColor: colors.primary500},
-    })}
+      screenOptions={({ route, navigation }) => ({
+        tabBarIcon: ({ focused, color, size }) =>
+          renderTabIcon(route, focused, color, size),
+        tabBarActiveTintColor: colors.accent500,
+        tabBarInactiveTintColor: colors.accent100,
+        tabBarStyle: { backgroundColor: colors.primary500 },
+        headerTintColor: colors.whiteColor,
+        headerStyle: { backgroundColor: colors.primary500 },
+        headerRight: ({ tintColor }) => (
+          <IconButton icon={'add'} size={28} color={tintColor} onPress={()=>{
+            navigation.navigate('ManageExpense')
+          }} />
+        )
+      })}
     >
       <BottomTabs.Screen
-       name='RecentExpense' 
-       component={RecentExpense}
-       options={{
-         title: "Recent Expense",
-         tabBarLabel: "Recent Expense",
-       }} 
-       />
-      <BottomTabs.Screen 
-      name='AllExpense' 
-      component={AllExpense} 
-      options={{
-        title: "All Expenses",
-        tabBarLabel :"All Expense",
-      }} 
+        name='RecentExpense'
+        component={RecentExpense}
+        options={{
+          title: "Recent Expense",
+          tabBarLabel: "Recent Expense",
+        }}
+      />
+      <BottomTabs.Screen
+        name='AllExpense'
+        component={AllExpense}
+        options={{
+          title: "All Expenses",
+          tabBarLabel: "All Expense",
+        }}
       />
     </BottomTabs.Navigator>
   )
@@ -76,15 +82,23 @@ const App = (): React.JSX.Element => {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator 
+        screenOptions={{
+          headerStyle: {backgroundColor: colors.primary500},
+          headerTintColor: colors.whiteColor
+        }}
+        >
           <Stack.Screen
-            name='ExpenseOverview' 
-            component={ExpenseOverviw} 
+            name='ExpenseOverview'
+            component={ExpenseOverviw}
             options={{ headerShown: false }}
-            />
-          <Stack.Screen 
-          name='ManageExpense' 
-          component={ManageExpense} 
+          />
+          <Stack.Screen
+            name='ManageExpense'
+            component={ManageExpense}
+            options={{
+              presentation: 'modal'
+            }}
           />
         </Stack.Navigator>
 

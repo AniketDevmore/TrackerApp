@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 4
+        borderRadius: 4,
+        minWidth: 80
     },
     amount: {
         color: colors.primary500,

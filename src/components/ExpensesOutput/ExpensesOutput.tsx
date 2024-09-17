@@ -14,49 +14,49 @@ const DUMMY_EXPENSE = [
         id:'2',
         description: 'Pair of Shirts',
         amount: 34.98,
-        date: new Date('2024-19-19')
+        date: new Date('2024-1-19')
     },
     {
         id:'3',
         description: 'Apple',
         amount: 4.98,
-        date: new Date('2024-29-19')
+        date: new Date('2024-2-19')
     },
     {
-        id:'1',
+        id:'4',
         description: 'Pair of Shoes',
         amount: 67.98,
         date: new Date('2024-9-09')
     },
     {
-        id:'2',
+        id:'5',
         description: 'Pair of Shirts',
         amount: 34.98,
-        date: new Date('2024-19-19')
+        date: new Date('2024-1-19')
     },
     {
-        id:'3',
+        id:'6',
         description: 'Apple',
         amount: 4.98,
-        date: new Date('2024-29-19')
+        date: new Date('2024-2-19')
     },
     {
-        id:'1',
+        id:'7',
         description: 'Pair of Shoes',
         amount: 67.98,
         date: new Date('2024-9-09')
     },
     {
-        id:'2',
+        id:'8',
         description: 'Pair of Shirts',
         amount: 34.98,
-        date: new Date('2024-19-19')
+        date: new Date('2024-1-19')
     },
     {
-        id:'3',
+        id:'9',
         description: 'Apple',
         amount: 4.98,
-        date: new Date('2024-29-19')
+        date: new Date('2024-12-19')
     },
 ];
 
