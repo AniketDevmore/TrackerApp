@@ -8,7 +8,7 @@ import AllExpense from './src/screens/AllExpense';
 import { colors } from './src/assets/Colors';
 import Icon, { IconType } from "react-native-dynamic-vector-icons";
 import IconButton from './src/components/UI/IconButton';
-
+import ExpensesContextProvider from "./src/store/expenses-context"
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
@@ -81,6 +81,7 @@ const ExpenseOverviw = () => {
 const App = (): React.JSX.Element => {
   return (
     <>
+    <ExpensesContextProvider>
       <NavigationContainer>
         <Stack.Navigator 
         screenOptions={{
@@ -103,6 +104,7 @@ const App = (): React.JSX.Element => {
         </Stack.Navigator>
 
       </NavigationContainer>
+      </ExpensesContextProvider>
     </>
   );
 }
