@@ -10,10 +10,10 @@ const RecentExpense = () => {
         const today = new Date();
         const date7DaysAgo = getDateMinusDays(today, 7);
 
-        return expense.date > date7DaysAgo
+        return (expense.date >= date7DaysAgo) && (expense.data <= today)
     })
     return(
-        <ExpensesOutput expenses={recentExpenses} periodName='Last 7 days'/>
+        <ExpensesOutput expenses={recentExpenses} periodName='Last 7 days' fallbackText={"No expenses registered for last 7 days!"}/>
 
     )
 }

@@ -6,7 +6,7 @@ import { ExpensesContext } from "../store/expenses-context";
 const AllExpense = () => {
     const expenseCtx = useContext(ExpensesContext);
     return(
-        <ExpensesOutput expenses={expenseCtx.expenses} periodName='Total'/>
+        <ExpensesOutput expenses={expenseCtx.expenses} periodName='Total' fallbackText={"No registered expenses found!"}/>
     )
 }
 

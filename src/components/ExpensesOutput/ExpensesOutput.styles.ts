@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         paddingTop: 24,
         backgroundColor: colors.primary700
+    },
+    infoText:{
+        color:'#FFF',
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 32
     }
 })
 
