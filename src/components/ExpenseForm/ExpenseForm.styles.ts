@@ -19,7 +19,16 @@ const styles = StyleSheet.create({
     },
     rowInput: {
         flex: 1,
-    }
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    button:{
+        minWidth: 120,
+        marginHorizontal: 8
+    },
 })
 
 export default styles;
