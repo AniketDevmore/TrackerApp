@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
     rowInput: {
         flex: 1,
     },
+    errorText:{
+        textAlign: 'center',
+        color: colors.error500,
+        margin: 8
+    },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'center',

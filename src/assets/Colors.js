@@ -8,8 +8,8 @@ export const colors = {
     primary800: '#0033cc',
     accent500: '#f9c939',
     accent100: '#bea044a3',
-    error50: '#ff4d4d',
-    error500: '#990000',
+    error50: '#ffcccc',
+    error500: '#ff4d4d',
     gray500: '#001a33',
     gray700: '#000d1a',
     whiteColor: '#ffffff'
