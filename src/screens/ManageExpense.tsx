@@ -5,13 +5,14 @@ import { colors } from "../assets/Colors";
 import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ExpenseForm/ExpenseForm";
+import { storeExpenses } from "../util/http";
 
 const ManageExpense = ({ route, navigation }: any) => {
-   const expensesCtx = useContext(ExpensesContext);
+    const expensesCtx = useContext(ExpensesContext);
     const editedExpenseId = route.params?.expenseId;
     const isEditing = !!editedExpenseId;
 
-    const selectedExpense = expensesCtx.expenses.find((expense:any) => expense.id === editedExpenseId)
+    const selectedExpense = expensesCtx.expenses.find((expense: any) => expense.id === editedExpenseId)
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -26,13 +27,14 @@ const ManageExpense = ({ route, navigation }: any) => {
     }
     const cancelHandler = () => {
         navigation.goBack();
-        
+
     }
-    const confirmHandler = (expenseData:any) => {
+    const confirmHandler = (expenseData: any) => {
         if (isEditing) {
-        expensesCtx.updateExpense(editedExpenseId, expenseData);
-        }else{
-        expensesCtx.addExpense({description: 'Test', amount: 19.98, date: new Date('2024-09-15'), id:10});
+            expensesCtx.updateExpense(editedExpenseId, expenseData);
+        } else {
+            storeExpenses(expenseData)
+            // expensesCtx.addExpense({ description: 'Test', amount: 19.98, date: new Date('2024-09-15'), id: 10 });
         }
         navigation.goBack();
     }
@@ -40,7 +42,7 @@ const ManageExpense = ({ route, navigation }: any) => {
     return (
         <View style={styles.container}>
             <ExpenseForm onCancel={cancelHandler} submitButtonLable={isEditing ? 'Update' : 'Add'} onSubmit={confirmHandler}
-            defaultValue={selectedExpense}
+                defaultValue={selectedExpense}
             />
             {/* <View style={styles.buttonContainer}>
                 <Button style={styles.button} mode={'flat'} onPress={cancelHandler}>Cancel</Button>
