@@ -10,6 +10,7 @@ import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 const ManageExpense = ({ route, navigation }: any) => {
     const [isFetching, setIsFetching] = useState(false);
+    const [error, setError] = useState<any>(null);
     const expensesCtx = useContext(ExpensesContext);
     const editedExpenseId = route.params?.expenseId;
     const isEditing = !!editedExpenseId;
@@ -22,14 +23,18 @@ const ManageExpense = ({ route, navigation }: any) => {
         })
     }, [navigation, isEditing]);
 
-    if(isFetching){
-        return <LoadingOverlay/>
+    if (isFetching) {
+        return <LoadingOverlay />
     }
 
     const deleteHandler = async () => {
         setIsFetching(true);
-        expensesCtx.deleteExpense(editedExpenseId)
-        await deleteExpense(editedExpenseId);
+        try {
+            expensesCtx.deleteExpense(editedExpenseId)
+            await deleteExpense(editedExpenseId);
+        } catch (error) {
+            setError('Could not fetech expenses!')
+        }
         setIsFetching(false);
         navigation.goBack();
 
@@ -40,13 +45,17 @@ const ManageExpense = ({ route, navigation }: any) => {
     }
     const confirmHandler = async (expenseData: any) => {
         setIsFetching(true);
-        if (isEditing) {
-            expensesCtx.updateExpense(editedExpenseId, expenseData);
-            await updateExpense(editedExpenseId, expenseData);
+        try {
+            if (isEditing) {
+                expensesCtx.updateExpense(editedExpenseId, expenseData);
+                await updateExpense(editedExpenseId, expenseData);
 
-        } else {
-            const id = await storeExpenses(expenseData)
-            expensesCtx.addExpense({ ...expenseData, id: id });
+            } else {
+                const id = await storeExpenses(expenseData)
+                expensesCtx.addExpense({ ...expenseData, id: id });
+            }
+        } catch (error) {
+            setError('Could not fetech expenses!')
         }
         navigation.goBack();
     }
