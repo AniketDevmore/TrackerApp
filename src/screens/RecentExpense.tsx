@@ -4,19 +4,26 @@ import { useContext, useEffect, useState } from "react";
 import { ExpensesContext } from "../store/expenses-context";
 import { getDateMinusDays } from "../util/date";
 import { getExpenses } from "../util/http";
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 const RecentExpense = () => {
     const expenseCtx = useContext(ExpensesContext);
+    const [isFetching, setIsFetching] = useState(true);
 
     useEffect(() => {
         const fetchExpenses = async () => {
           const expenses =  await getExpenses();
           console.log('expenses---------->>',expenses);
+          setIsFetching(false);
             expenseCtx.setExpenses(expenses);
         }
 
         fetchExpenses();
     }, []);
+
+    if(isFetching){
+        return <LoadingOverlay/>
+    }
 
     console.log(expenseCtx)
     const recentExpenses = expenseCtx.expenses.filter((expense: any) => {
